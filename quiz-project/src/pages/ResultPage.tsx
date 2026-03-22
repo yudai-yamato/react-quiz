@@ -1,16 +1,25 @@
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ROUTES } from "../const";
+import Result from "../Result/Result";
+import Loading from "../Loading/Loading";
+
 
 export default function ResultPage() {
+  const [active, setActive] = useState(false);
   const location = useLocation();
   const maxQuizLen = location.state.maxQuizLen;
   const correctNumLen = location.state.correctNumLen;
 
+  useEffect(() => {
+    setTimeout(() => { setActive(true) }, 2000);
+  }, []);
+
   return (
     <>
+      <Loading active={active} />
       <h1>Result</h1>
-      <p>あなたの正解数は...</p>
-      <p>{`全${maxQuizLen}問中、${correctNumLen}問正解しました。`}</p>
+      <Result maxQuizLen={maxQuizLen} correctNumLen={correctNumLen} />
       <Link to={ROUTES.HOME}>もう一度挑戦する</Link>
     </>
 
