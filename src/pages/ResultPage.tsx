@@ -8,8 +8,9 @@ import Loading from "../Loading/Loading";
 export default function ResultPage() {
   const [active, setActive] = useState(false);
   const location = useLocation();
-  const maxQuizLen = location.state.maxQuizLen;
-  const correctNumLen = location.state.correctNumLen;
+  const maxQuizLen = location.state?.maxQuizLen || 0;
+  const correctNumLen = location.state?.correctNumLen || 0;
+  const answerLogs = location.state?.answerLogs || [];
 
   useEffect(() => {
     setTimeout(() => { setActive(true) }, 2000);
@@ -19,7 +20,7 @@ export default function ResultPage() {
     <>
       <Loading active={active} />
       <h1>Result</h1>
-      <Result maxQuizLen={maxQuizLen} correctNumLen={correctNumLen} />
+      <Result maxQuizLen={maxQuizLen} correctNumLen={correctNumLen} answerLogs={answerLogs}/>
       <Link to={ROUTES.HOME}>もう一度挑戦する</Link>
     </>
 
