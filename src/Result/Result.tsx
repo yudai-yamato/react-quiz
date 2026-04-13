@@ -15,10 +15,7 @@ export default function Result({ maxQuizLen, correctNumLen, answerLogs }: { maxQ
                     {answerLogs && answerLogs.length > 0 ? answerLogs.map((answer, index) => {
                         return (
                             <div key={index}>
-                                <ul>
-                                    <li>Q{index + 1}: {answer.isCorrect ? '正解' : `不正解 (正解: ${answer.correctAnswer})`}</li>
-                                </ul>
-
+                                Q{index + 1}: {answer.isCorrect ? '正解' : `不正解 (正解: ${answer.correctAnswer})`}
                             </div>
                         );
                     }) : <div>データがありません</div>}
